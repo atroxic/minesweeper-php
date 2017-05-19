@@ -113,7 +113,7 @@ class Minesweeper {
         $this->draw();
     }
     
-    public function checkStatus() {
+    private function checkStatus() {
         if ($this->lost) {
             echo("BOOM\nGame Over\n");
             $this->draw();
