@@ -16,7 +16,6 @@ while (true) {
     } while (!is_int(intval($y)));
     echo("\n");
     $board->checkCell($x, $y);
-    $board->checkStatus();
     echo("\n");
 }
 
