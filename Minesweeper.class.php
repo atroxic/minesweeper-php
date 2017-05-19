@@ -71,7 +71,7 @@ class Minesweeper {
         for ($i = -1; $i < 2; $i++) {
             for ($j = -1; $j < 2; $j++) {
                 if ($j == 0 && $i == 0) {
-                    break;
+                    continue;
                 } elseif ($this->isBomb($x + $j, $y + $i)) {
                     $count++;
                 } elseif ($y + $i >= 0 && $y + $i < 10 && $x + $j >= 0 && $x + $j < 10 && $count == 0 && !$this->cleared[$x + $j][$y + $i]) {
@@ -118,7 +118,7 @@ class Minesweeper {
             echo("BOOM\nGame Over\n");
             $this->draw();
             die;
-        } elseif ($this->countBoard >= 90) {
+        } elseif ($this->countBoard() >= 90) {
             echo("Well Done. You Win!\n");
             die;
         }
