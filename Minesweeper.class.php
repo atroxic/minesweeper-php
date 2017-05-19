@@ -12,6 +12,13 @@ class Minesweeper {
         for ($i = 0; $i < 10; $i++) {
             $this->bombs[mt_rand(0,9)][mt_rand(0,9)] = true;
         }
+        
+        // Fill $cleared array with falses.
+        for ($y = 0; $y < 10; $y++) {
+            for ($x = 0; $x < 10; $x++) {
+                $this->cleared[$x][$y] = false;
+            }
+        }
     }
     
     public function draw() {
@@ -63,8 +70,13 @@ class Minesweeper {
         $count = 0;
         for ($i = -1; $i < 2; $i++) {
             for ($j = -1; $j < 2; $j++) {
-                if ($this->isBomb($x + $j, $y + $i)) {
+                if ($j == 0 && $i == 0) {
+                    break;
+                } elseif ($this->isBomb($x + $j, $y + $i)) {
                     $count++;
+                } elseif ($y + $i >= 0 && $y + $i < 10 && $x + $j >= 0 && $x + $j < 10 && $count == 0 && !$this->cleared[$x + $j][$y + $i]) {
+                    $this->cleared[$x + $j][$y + $i] = true;
+                    $this->checkSurrounding($x + $j, $y + $i);
                 }
             }
         }
